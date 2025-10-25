@@ -17,6 +17,5 @@ import MainContent from "@/components/home/MainContent.vue";
 }
 
 .main {
-  margin-top: 10rem;
 }
 </style>

@@ -1,8 +1,10 @@
 <template>
   <div class="container">
-    <h1>Explore All Your Users <br />in One Place</h1>
-    <p>Quickly discover, view, and connect with every user effortlessly</p>
-    <base-button link class="fill" to="/users">Go to users</base-button>
+    <div>
+      <h1>Explore All Your Users <br />in One Place</h1>
+      <p>Quickly discover, view, and connect with every user effortlessly</p>
+      <base-button link class="fill" to="/users">Go to users</base-button>
+    </div>
 
     <img src="/images/hero.jpg" alt="heroImage" />
   </div>
@@ -13,6 +15,9 @@
 <style scoped>
 .container {
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 h1 {
   font-size: 54px;
@@ -26,8 +31,5 @@ p {
 
 img {
   width: 24rem;
-  position: absolute;
-  top: -110px;
-  right: 88px;
 }
 </style>
