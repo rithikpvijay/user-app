@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container-row">
     <router-link :to="userLink" class="row">
       <div>{{ id }}</div>
       <div>{{ name }}</div>
@@ -41,7 +41,7 @@ const userLink = computed(() => `/users/${props.id}`);
 </script>
 
 <style scoped>
-.container {
+.container-row {
   max-width: 1500px;
   margin: 0 auto;
   padding: 0 150px;
@@ -86,7 +86,7 @@ a {
     grid-template-columns: 0.3fr 1fr 0.9fr;
   }
 
-  .container {
+  .container-row {
     padding: 0 64px;
   }
 }
@@ -96,7 +96,7 @@ a {
     column-gap: 1rem;
   }
 
-  .container {
+  .container-row {
     padding: 0 48px;
   }
 }
