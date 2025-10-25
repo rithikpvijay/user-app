@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div>
+    <div class="main-header">
       <h1>Explore All Your Users <br />in One Place</h1>
       <p>Quickly discover, view, and connect with every user effortlessly</p>
       <base-button link class="fill" to="/users">Go to users</base-button>
@@ -18,6 +18,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  /* gap: 12rem; */
 }
 h1 {
   font-size: 54px;

@@ -12,7 +12,7 @@ import MainContent from "@/components/home/MainContent.vue";
 
 <style scoped>
 .home {
-  padding: 26px 150px;
+  padding: 40px 165px;
   /* min-height: 100vh; */
 }
 </style>
