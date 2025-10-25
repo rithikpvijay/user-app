@@ -1,11 +1,13 @@
 <template>
   <div class="container">
-    <div>S.No</div>
-    <div>Name</div>
-    <div>Email</div>
-    <div>Phone</div>
-    <div>Company</div>
-    <div></div>
+    <div class="table">
+      <div>S.No</div>
+      <div>Name</div>
+      <div class="email">Email</div>
+      <div class="phone">Phone</div>
+      <div>Company</div>
+      <div></div>
+    </div>
   </div>
 
   <div v-if="isLoading">
@@ -50,16 +52,22 @@ onMounted(async () => {
 
 <style scoped>
 .container {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 24px 150px 0 150px;
+}
+.table {
   display: grid;
-  grid-template-columns: 0.3fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 0.2fr 1fr 1.2fr 1.2fr 0.9fr;
   padding: 12px;
-  margin: 24px 120px 0 120px;
+
   align-items: center;
+  column-gap: 2rem;
 
   background-color: antiquewhite;
 }
 
-.container div {
+.table div {
   text-transform: uppercase;
 }
 
@@ -70,5 +78,45 @@ onMounted(async () => {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+}
+
+@media (max-width: 950px) {
+  .table {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 855px) {
+  .phone {
+    display: none;
+  }
+
+  .table {
+    grid-template-columns: 0.2fr 1fr 1.2fr 0.9fr;
+  }
+}
+@media (max-width: 760px) {
+  .email {
+    display: none;
+  }
+  .table {
+    grid-template-columns: 0.3fr 1fr 0.9fr;
+  }
+
+  .container {
+    padding-left: 64px;
+    padding-right: 64px;
+  }
+}
+
+@media (max-width: 460px) {
+  .container {
+    padding-left: 48px;
+    padding-right: 48px;
+  }
+  .table {
+    font-size: 12px;
+    column-gap: 1rem;
+  }
 }
 </style>

@@ -55,4 +55,10 @@ a:link,
 a:visited {
   text-decoration: none;
 }
+@media (max-width: 1250px) {
+  .blank,
+  .fill {
+    font-size: 14px;
+  }
+}
 </style>

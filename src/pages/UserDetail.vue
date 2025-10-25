@@ -3,8 +3,8 @@
     <base-loading></base-loading>
   </div>
   <div v-if="user && !isLoading">
-    <base-card>
-      <div class="container">
+    <div class="container">
+      <base-card>
         <div class="first">
           <img src="/images/Avatar_placeholder.png" alt="avatar" />
           <div>
@@ -32,9 +32,10 @@
           <p>Company</p>
           <p>{{ user.company.name }}</p>
         </div>
-      </div>
-    </base-card>
+      </base-card>
+    </div>
   </div>
+
   <div v-if="!user && !isLoading">
     <not-found></not-found>
   </div>
@@ -103,13 +104,21 @@ img {
   border-bottom: 1px solid #eee;
 }
 
-.container {
-  padding: 12px;
-}
-
 .loading {
   position: absolute;
   top: 300px;
   right: 750px;
+}
+
+@media (max-width: 760px) {
+  .container {
+    padding: 40px 64px;
+  }
+}
+
+@media (max-width: 460px) {
+  .container {
+    padding: 40px 48px;
+  }
 }
 </style>

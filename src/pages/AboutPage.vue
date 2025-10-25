@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque saepe voluptate ullam inventore
     necessitatibus ea animi est ipsum magnam labore unde voluptatem laudantium dolore sed
     perferendis natus optio, impedit maxime ab hic modi blanditiis, iure laborum reiciendis?
@@ -46,5 +46,9 @@
 <style scoped>
 div {
   padding: 20px 120px;
+}
+.container {
+  max-width: 1500px;
+  margin: 0 auto;
 }
 </style>

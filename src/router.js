@@ -7,7 +7,8 @@ import AboutPage from "./pages/AboutPage.vue";
 const router = createRouter({
   history: createWebHistory(),
   routes: [
-    { path: "/", component: HomePage },
+    { path: "/", redirect: "/home" },
+    { path: "/home", component: HomePage },
     { path: "/users", component: UsersList },
     { path: "/users/:id", component: UserDetail, props: true },
     { path: "/about", component: AboutPage },

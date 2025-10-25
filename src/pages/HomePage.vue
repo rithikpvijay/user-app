@@ -1,8 +1,6 @@
 <template>
   <div class="home">
-    <div class="main">
-      <main-content></main-content>
-    </div>
+    <main-content></main-content>
   </div>
 </template>
 
@@ -14,5 +12,12 @@ import MainContent from "@/components/home/MainContent.vue";
 .home {
   padding: 40px 165px;
   /* min-height: 100vh; */
+  margin: 0 auto;
+  max-width: 1500px;
+}
+@media (max-width: 760px) {
+  .home {
+    padding: 40px 64px;
+  }
 }
 </style>

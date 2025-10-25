@@ -1,25 +1,51 @@
 <template>
   <nav>
     <router-link class="logo" to="/">VUER</router-link>
-    <ul>
-      <li><router-link to="/">Home</router-link></li>
-      <li><router-link to="/users">Users</router-link></li>
+    <div class="desk-nav">
+      <navigation-list></navigation-list>
+    </div>
+    <div class="mobile-nav">
+      <Icon
+        icon="material-symbols:menu"
+        width="24"
+        height="24"
+        @click="handleToggle"
+        class="menu"
+      />
+      <base-menu v-if="menuToggle" @close="handleClose" class="menu">
+        <navigation-list mode="col"></navigation-list>
+      </base-menu>
+    </div>
 
-      <li><router-link to="/about">About</router-link></li>
-    </ul>
-
-    <base-button link to="/users" class="blank">{{ isShow ? "Go to users" : "Users" }}</base-button>
+    <base-button link to="/users" class="blank desk-nav">{{
+      isShow ? "Go to users" : "Users"
+    }}</base-button>
   </nav>
 </template>
 
 <script setup>
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import BaseButton from "../UI/BaseButton.vue";
 import { ref, watch } from "vue";
+import { Icon } from "@iconify/vue";
+import NavigationList from "./NavigationList.vue";
 
+const menuToggle = ref(false);
 const route = useRoute();
+const router = useRouter();
 const isShow = ref(true);
-console.log(route.path);
+
+function handleToggle() {
+  menuToggle.value = true;
+}
+
+function handleClose() {
+  menuToggle.value = false;
+}
+
+router.afterEach(() => {
+  menuToggle.value = false;
+});
 
 watch(
   () => route.path,
@@ -40,23 +66,8 @@ nav {
   align-items: center;
   justify-content: space-between;
   padding: 16px 120px;
-}
-ul {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-  list-style: none;
-}
-
-li a:link,
-li a:visited {
-  text-decoration: none;
-  color: #000;
-}
-
-li a:hover,
-li a:active {
-  color: #bbb;
+  max-width: 1500px;
+  margin: 0 auto;
 }
 
 .logo {
@@ -64,5 +75,23 @@ li a:active {
   text-decoration: none;
   color: #000;
   letter-spacing: 1.3px;
+}
+
+.mobile-nav {
+  display: none;
+}
+@media (max-width: 760px) {
+  nav {
+    padding: 16px 48px;
+  }
+}
+@media (max-width: 600px) {
+  .mobile-nav {
+    display: block;
+  }
+
+  .desk-nav {
+    display: none;
+  }
 }
 </style>
