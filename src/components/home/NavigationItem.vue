@@ -1,6 +1,6 @@
 <template>
   <nav>
-    <p>Vuer</p>
+    <router-link class="logo" to="/">VUER</router-link>
     <ul>
       <li><router-link to="/">Home</router-link></li>
       <li><router-link to="/users">Users</router-link></li>
@@ -14,7 +14,7 @@
 
 <script setup>
 import { useRoute } from "vue-router";
-import BaseButton from "./BaseButton.vue";
+import BaseButton from "../UI/BaseButton.vue";
 import { ref, watch } from "vue";
 
 const route = useRoute();
@@ -57,5 +57,12 @@ li a:visited {
 li a:hover,
 li a:active {
   color: #bbb;
+}
+
+.logo {
+  font-weight: 700;
+  text-decoration: none;
+  color: #000;
+  letter-spacing: 1.3px;
 }
 </style>

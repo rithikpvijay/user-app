@@ -1,6 +1,6 @@
 <template>
-  <div v-if="isLoading" class="loading">
-    <Icon icon="line-md:loading-twotone-loop" width="72" height="72" />
+  <div v-if="isLoading">
+    <base-loading></base-loading>
   </div>
   <div v-if="user && !isLoading">
     <base-card>
@@ -44,7 +44,6 @@
 import axios from "axios";
 import { onMounted, ref } from "vue";
 import NotFound from "./NotFound.vue";
-import { Icon } from "@iconify/vue";
 
 const user = ref(null);
 const error = ref(null);

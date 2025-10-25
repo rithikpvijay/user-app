@@ -8,18 +8,20 @@
     <div></div>
   </div>
 
-  <div v-if="isLoading" class="loading">
-    <Icon icon="line-md:loading-twotone-loop" width="100" height="100" />
+  <div v-if="isLoading">
+    <base-loading></base-loading>
   </div>
 
-  <div v-for="user in userData" :key="user.id">
-    <user-row
-      :id="user.id"
-      :name="user.name"
-      :email="user.email"
-      :phone="user.phone"
-      :company="user.company.name"
-    ></user-row>
+  <div v-if="!isLoading">
+    <div v-for="user in userData" :key="user.id">
+      <user-row
+        :id="user.id"
+        :name="user.name"
+        :email="user.email"
+        :phone="user.phone"
+        :company="user.company.name"
+      ></user-row>
+    </div>
   </div>
 </template>
 
@@ -27,7 +29,6 @@
 import axios from "axios";
 import { onMounted, ref } from "vue";
 import UserRow from "./UserRow.vue";
-import { Icon } from "@iconify/vue";
 
 const userData = ref([]);
 const error = ref(null);
@@ -63,8 +64,11 @@ onMounted(async () => {
 }
 
 .loading {
-  position: absolute;
-  top: 300px;
-  right: 700px;
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
 }
 </style>
