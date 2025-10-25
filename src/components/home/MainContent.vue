@@ -16,9 +16,13 @@
 .container {
   position: relative;
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   justify-content: space-between;
   /* gap: 12rem; */
+}
+
+.main-header {
+  margin-top: 8rem;
 }
 h1 {
   font-size: 54px;
