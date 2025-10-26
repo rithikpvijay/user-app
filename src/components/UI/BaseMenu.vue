@@ -31,7 +31,7 @@ function handleClose() {
   display: flex;
   flex-direction: column;
   gap: 24px;
-  padding: 24px 36px;
+  padding: 16px 36px;
   box-shadow: 0 2px 8px rgba(0, 0, 0);
   background-color: white;
   z-index: 1;
@@ -41,5 +41,6 @@ function handleClose() {
   align-self: flex-end;
   border-bottom: none;
   cursor: pointer;
+  margin-bottom: 24px;
 }
 </style>

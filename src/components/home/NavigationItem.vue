@@ -1,6 +1,6 @@
 <template>
   <nav>
-    <router-link class="logo" to="/">VUER</router-link>
+    <router-link class="logo" :class="{ fixed: menuToggle }" to="/">VUER</router-link>
     <div class="desk-nav">
       <navigation-list></navigation-list>
     </div>
@@ -10,7 +10,7 @@
         width="24"
         height="24"
         @click="handleToggle"
-        class="menu"
+        :class="{ disable: menuToggle }"
       />
       <transition name="menu">
         <base-menu v-if="menuToggle" @close="handleClose" class="menu">
@@ -70,6 +70,15 @@ nav {
   text-decoration: none;
   color: #000;
   letter-spacing: 1.3px;
+  z-index: 10;
+}
+
+.fixed {
+  position: fixed;
+}
+
+.disable {
+  visibility: hidden;
 }
 
 .mobile-nav {
