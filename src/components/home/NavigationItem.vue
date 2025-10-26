@@ -12,9 +12,11 @@
         @click="handleToggle"
         class="menu"
       />
-      <base-menu v-if="menuToggle" @close="handleClose" class="menu">
-        <navigation-list mode="col"></navigation-list>
-      </base-menu>
+      <transition name="menu">
+        <base-menu v-if="menuToggle" @close="handleClose" class="menu">
+          <navigation-list mode="col"></navigation-list>
+        </base-menu>
+      </transition>
     </div>
 
     <base-button link to="/users" class="blank desk-nav" :class="{ 'users-button': !isShow }"
@@ -72,6 +74,29 @@ nav {
 
 .mobile-nav {
   display: none;
+}
+
+.menu-enter-from,
+.menu-leave-to {
+  transform: translateX(100vw);
+  opacity: 0;
+}
+
+.menu-enter-to,
+.menu-leave-from {
+  transform: translateY(0px);
+  opacity: 1;
+}
+
+.menu-enter-active {
+  transition: all 0.5s ease-out;
+}
+
+.menu-leave-active {
+  transition: all 0.5s ease-in;
+}
+.menu {
+  overflow: hidden;
 }
 @media (max-width: 760px) {
   nav {
