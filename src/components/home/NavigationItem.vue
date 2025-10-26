@@ -17,21 +17,21 @@
       </base-menu>
     </div>
 
-    <base-button link to="/users" class="blank desk-nav">{{
-      isShow ? "Go to users" : "Users"
-    }}</base-button>
+    <base-button link to="/users" class="blank desk-nav" :class="{ 'users-button': !isShow }"
+      >Go to users</base-button
+    >
   </nav>
 </template>
 
 <script setup>
-import { useRoute, useRouter } from "vue-router";
+import { useRouter } from "vue-router";
 import BaseButton from "../UI/BaseButton.vue";
-import { ref, watch } from "vue";
+import { ref } from "vue";
 import { Icon } from "@iconify/vue";
 import NavigationList from "./NavigationList.vue";
 
 const menuToggle = ref(false);
-const route = useRoute();
+
 const router = useRouter();
 const isShow = ref(true);
 
@@ -43,21 +43,10 @@ function handleClose() {
   menuToggle.value = false;
 }
 
-router.afterEach(() => {
+router.afterEach((to) => {
+  to.path === "/users" ? (isShow.value = false) : (isShow.value = true);
   menuToggle.value = false;
 });
-
-watch(
-  () => route.path,
-  (newPath) => {
-    console.log(newPath);
-    if (newPath === "/users") {
-      isShow.value = false;
-    } else {
-      isShow.value = true;
-    }
-  }
-);
 </script>
 
 <style scoped>
@@ -68,6 +57,10 @@ nav {
   padding: 16px 120px;
   max-width: 1500px;
   margin: 0 auto;
+}
+
+.users-button {
+  visibility: hidden;
 }
 
 .logo {

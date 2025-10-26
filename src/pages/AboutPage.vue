@@ -45,10 +45,16 @@
 
 <style scoped>
 div {
-  padding: 20px 120px;
+  padding: 20px 150px;
 }
 .container {
   max-width: 1500px;
   margin: 0 auto;
+}
+
+@media (max-width: 600px) {
+  div {
+    padding: 20px 64px;
+  }
 }
 </style>

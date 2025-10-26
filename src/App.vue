@@ -13,7 +13,4 @@ import NavigationItem from "./components/home/NavigationItem.vue";
   padding: 0;
   box-sizing: border-box;
 }
-body {
-  /* font-family: "Roboto"; */
-}
 </style>
