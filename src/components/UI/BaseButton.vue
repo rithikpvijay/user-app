@@ -36,6 +36,8 @@ const props = defineProps({
   border-radius: 4px;
   display: inline-block;
   color: #000;
+  background-color: transparent;
+  cursor: pointer;
 }
 .blank:hover {
   background-color: #eee;
@@ -48,6 +50,7 @@ const props = defineProps({
   background-color: #000;
   color: #fff;
   display: inline-block;
+  cursor: pointer;
 }
 .fill:hover {
   background-color: #333;

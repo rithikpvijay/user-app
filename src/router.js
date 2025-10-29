@@ -4,6 +4,7 @@ import UsersList from "./pages/UsersList.vue";
 import UserDetail from "./pages/UserDetail.vue";
 import NotFound from "./pages/NotFound.vue";
 import AboutPage from "./pages/AboutPage.vue";
+import UserAdd from "./pages/UserAdd.vue";
 const router = createRouter({
   history: createWebHistory(),
   routes: [
@@ -12,6 +13,7 @@ const router = createRouter({
     { path: "/users", component: UsersList },
     { path: "/users/:id", component: UserDetail, props: true },
     { path: "/about", component: AboutPage },
+    { path: "/add", component: UserAdd },
     {
       path: "/:notFound(.*)",
       component: NotFound,

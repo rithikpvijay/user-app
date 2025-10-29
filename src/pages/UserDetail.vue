@@ -4,7 +4,7 @@
   </div>
   <div v-if="user && !isLoading">
     <div class="container">
-      <base-card>
+      <base-card class="base">
         <div class="first">
           <img src="/images/Avatar_placeholder.png" alt="avatar" />
           <div>
@@ -42,13 +42,14 @@
 </template>
 
 <script setup>
-import axios from "axios";
-import { onMounted, ref } from "vue";
+import { computed } from "vue";
 import NotFound from "./NotFound.vue";
+import { useUsers } from "@/hooks/useUsers";
 
-const user = ref(null);
-const error = ref(null);
-const isLoading = ref(false);
+const { users, isLoading } = useUsers();
+
+console.log(isLoading.value);
+console.log(users.value);
 
 const props = defineProps({
   id: {
@@ -56,18 +57,8 @@ const props = defineProps({
     required: true,
   },
 });
-onMounted(async () => {
-  try {
-    isLoading.value = true;
-    error.value = null;
-    const res = await axios.get(`https://jsonplaceholder.typicode.com/users/${props.id}`);
-    user.value = res.data;
-  } catch (err) {
-    error.value = err;
-  } finally {
-    isLoading.value = false;
-  }
-});
+
+const user = computed(() => users.value?.find((user) => user.id === Number(props.id)));
 </script>
 
 <style scoped>
@@ -108,6 +99,15 @@ img {
   position: absolute;
   top: 300px;
   right: 750px;
+}
+
+.container {
+  display: flex;
+  place-items: center;
+  min-height: 80vh;
+}
+.base {
+  width: 100%;
 }
 
 @media (max-width: 760px) {
