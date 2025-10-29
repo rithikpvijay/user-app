@@ -24,7 +24,7 @@
 
 <script setup>
 import { Icon } from "@iconify/vue";
-
+//eslint-disable-next-line
 const props = defineProps({
   mode: {
     type: String,

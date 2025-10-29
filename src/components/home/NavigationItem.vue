@@ -93,7 +93,7 @@ nav {
 
 .menu-enter-to,
 .menu-leave-from {
-  transform: translateY(0px);
+  transform: translateX(0px);
   opacity: 1;
 }
 

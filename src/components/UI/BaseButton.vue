@@ -8,6 +8,7 @@
 </template>
 
 <script setup>
+//eslint-disable-next-line
 const props = defineProps({
   link: {
     type: Boolean,
