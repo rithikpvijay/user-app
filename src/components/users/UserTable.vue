@@ -1,36 +1,49 @@
 <template>
   <div class="container">
-    <base-button link to="/add" class="blank btn">Add User</base-button>
+    <base-button
+      link
+      to="/add"
+      class="blank btn"
+    >
+      Add User
+    </base-button>
 
     <div class="table">
       <div>S.No</div>
       <div>Name</div>
-      <div class="email">Email</div>
-      <div class="phone">Phone</div>
+      <div class="email">
+        Email
+      </div>
+      <div class="phone">
+        Phone
+      </div>
       <div>Company</div>
-      <div></div>
+      <div />
     </div>
   </div>
 
   <div v-if="isLoading">
-    <base-loading></base-loading>
+    <base-loading />
   </div>
 
   <div v-if="!isLoading">
-    <div v-for="(user, index) in users" :key="user.id">
+    <div
+      v-for="(user, index) in users"
+      :key="user.id"
+    >
       <user-row
-        :num="index"
         :id="user.id"
+        :num="index"
         :name="user.name"
         :email="user.email"
         :phone="user.phone"
         :company="user.company.name"
-      ></user-row>
+      />
     </div>
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import UserRow from "./UserRow.vue";
 import { useUsers } from "@/hooks/useUsers";
 

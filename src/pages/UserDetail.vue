@@ -1,15 +1,22 @@
 <template>
   <div v-if="isLoading">
-    <base-loading></base-loading>
+    <base-loading />
   </div>
   <div v-if="user && !isLoading">
     <div class="container">
       <base-card class="base">
         <div class="first">
-          <img src="/images/Avatar_placeholder.png" alt="avatar" />
+          <img
+            src="/images/Avatar_placeholder.png"
+            alt="avatar"
+          >
           <div>
-            <p class="name">{{ user.name }}</p>
-            <p class="email">{{ user.email }}</p>
+            <p class="name">
+              {{ user.name }}
+            </p>
+            <p class="email">
+              {{ user.email }}
+            </p>
           </div>
         </div>
         <div class="detail">
@@ -37,11 +44,11 @@
   </div>
 
   <div v-if="!user && !isLoading">
-    <not-found></not-found>
+    <not-found />
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { computed } from "vue";
 import NotFound from "./NotFound.vue";
 import { useUsers } from "@/hooks/useUsers";
@@ -51,12 +58,11 @@ const { users, isLoading } = useUsers();
 console.log(isLoading.value);
 console.log(users.value);
 
-const props = defineProps({
-  id: {
-    type: String,
-    required: true,
-  },
-});
+interface Props{
+  id:string,
+}
+
+const props = defineProps<Props>();
 
 const user = computed(() => users.value?.find((user) => user.id === Number(props.id)));
 </script>

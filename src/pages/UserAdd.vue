@@ -1,5 +1,5 @@
 <template>
-  <user-form></user-form>
+  <user-form />
 </template>
 
 <script setup>

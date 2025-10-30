@@ -1,27 +1,42 @@
 <template>
   <nav>
-    <router-link class="logo" :class="{ fixed: menuToggle }" to="/">VUER</router-link>
+    <router-link
+      class="logo"
+      :class="{ fixed: menuToggle }"
+      to="/"
+    >
+      VUER
+    </router-link>
     <div class="desk-nav">
-      <navigation-list></navigation-list>
+      <navigation-list />
     </div>
     <div class="mobile-nav">
       <Icon
         icon="material-symbols:menu"
         width="24"
         height="24"
-        @click="handleToggle"
         :class="{ disable: menuToggle }"
+        @click="handleToggle"
       />
       <transition name="menu">
-        <base-menu v-if="menuToggle" @close="handleClose" class="menu">
-          <navigation-list mode="col"></navigation-list>
+        <base-menu
+          v-if="menuToggle"
+          class="menu"
+          @close="handleClose"
+        >
+          <navigation-list mode="col" />
         </base-menu>
       </transition>
     </div>
 
-    <base-button link to="/users" class="blank desk-nav" :class="{ 'users-button': !isShow }"
-      >Go to users</base-button
+    <base-button
+      link
+      to="/users"
+      class="blank desk-nav"
+      :class="{ 'users-button': !isShow }"
     >
+      Go to users
+    </base-button>
   </nav>
 </template>
 
