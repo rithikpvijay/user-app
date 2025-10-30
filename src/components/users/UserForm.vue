@@ -53,7 +53,7 @@
         <div>
           <label for="phone">Phone</label>
           <input
-            type="phone"
+            type="tel"
             id="phone"
             :class="{ valid: !isFormValid && !formValues.phone.trim() }"
             v-model.trim="formValues.phone"
@@ -73,10 +73,9 @@
           />
           <p v-if="!isFormValid && !formValues.company.trim()">Enter a valid company</p>
         </div>
-
-        <div>
+        <span>
           <base-button class="blank submit">Submit</base-button>
-        </div>
+        </span>
       </form>
     </base-card>
   </div>
@@ -168,11 +167,17 @@ input {
 
 form div p {
   margin-left: 24px;
+  color: #555;
+}
+
+span {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
 }
 
 .submit {
-  grid-column: 3/3;
   margin-top: 12px;
+  grid-column: 2/2;
 }
 
 .valid {
@@ -182,6 +187,50 @@ form div p {
 @media (max-width: 760px) {
   .container {
     padding: 40px 64px;
+  }
+}
+
+@media (max-width: 600px) {
+  form div {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+  form div p {
+    grid-column: 2/2;
+    grid-row: 1/1;
+    margin-left: 0;
+  }
+
+  input {
+    grid-column: 2/2;
+    grid-row: 2/2;
+  }
+  label {
+    grid-row: 2/2;
+  }
+}
+@media (max-width: 460px) {
+  .container {
+    padding: 40px 48px;
+  }
+
+  form div {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    padding-top: 0;
+    padding-bottom: 12px;
+  }
+
+  label {
+    grid-row: 1/1;
+  }
+  input {
+    grid-column: 1/1;
+  }
+
+  form div p {
+    grid-row: 3/3;
+    grid-column: 1/1;
   }
 }
 </style>
