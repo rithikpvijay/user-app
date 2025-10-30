@@ -7,25 +7,17 @@
   </router-link>
 </template>
 
-<script setup>
+<script setup lang="ts">
+interface Props {
+  link?: boolean;
+  to?: string;
+  mode?: string;
+}
 //eslint-disable-next-line
-const props = defineProps({
-  link: {
-    type: Boolean,
-    required: false,
-    default: false,
-  },
-
-  to: {
-    type: String,
-    required: false,
-    default: "/",
-  },
-  mode: {
-    type: String,
-    required: false,
-    default: "",
-  },
+const props = withDefaults(defineProps<Props>(), {
+  link: false,
+  to: "/",
+  mode: "blank",
 });
 </script>
 
