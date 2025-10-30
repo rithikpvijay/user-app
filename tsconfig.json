@@ -1,0 +1,26 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.json",
+  "compilerOptions": {
+    /* ✅ Fix 'import.meta' and module resolution issues */
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+
+    /* ✅ General good TypeScript + Vue defaults */
+    "target": "ESNext",
+    "jsx": "preserve",
+    "strict": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "useDefineForClassFields": true,
+    "isolatedModules": true,
+
+    /* ✅ Alias support */
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.vue", "vite.config.ts"],
+  "exclude": ["node_modules"]
+}

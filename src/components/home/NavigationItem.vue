@@ -25,12 +25,12 @@
   </nav>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { useRouter } from "vue-router";
-import BaseButton from "../UI/BaseButton.vue";
+import BaseButton from "@/components/UI/BaseButton.vue";
 import { ref } from "vue";
 import { Icon } from "@iconify/vue";
-import NavigationList from "./NavigationList.vue";
+import NavigationList from "@/components/home/NavigationList.vue";
 
 const menuToggle = ref(false);
 
