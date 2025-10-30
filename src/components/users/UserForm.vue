@@ -9,7 +9,7 @@
             type="text"
             id="name"
             v-model.trim="name.val"
-            @blur="clearValidity(name)"
+            
           />
           <p v-if="!name.isValid">Enter a valid name</p>
         </div>
@@ -21,7 +21,7 @@
             id="username"
             :class="{ valid: !userName.isValid }"
             v-model.trim="userName.val"
-            @blur="clearValidity(userName)"
+            
           />
           <p v-if="!userName.isValid">Enter a valid username</p>
         </div>
@@ -33,7 +33,7 @@
             id="email"
             :class="{ valid: !email.isValid }"
             v-model.trim="email.val"
-            @blur="clearValidity(email)"
+            
           />
           <p v-if="!email.isValid">Enter a valid email</p>
         </div>
@@ -45,7 +45,7 @@
             id="city"
             :class="{ valid: !city.isValid }"
             v-model.trim="city.val"
-            @blur="clearValidity(city)"
+            
           />
           <p v-if="!city.isValid">Enter a valid city</p>
         </div>
@@ -57,7 +57,7 @@
             id="phone"
             :class="{ valid: !phone.isValid }"
             v-model.trim="phone.val"
-            @blur="clearValidity(phone)"
+            
           />
           <p v-if="!phone.isValid">Enter a valid phone</p>
         </div>
@@ -69,7 +69,7 @@
             id="company"
             :class="{ valid: !company.isValid }"
             v-model.trim="company.val"
-            @blur="clearValidity(company)"
+            
           />
           <p v-if="!company.isValid">Enter a valid company</p>
         </div>
@@ -81,39 +81,59 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { useUsers } from "@/hooks/useUsers";
-import router from "@/router";
 import { ref } from "vue";
+import { useRouter } from "vue-router";
+
+interface User {
+  id: number;
+  name: string;
+  username: string;
+  email: string;
+  address: {
+    street: string;
+  };
+  phone: string;
+  company: {
+    name: string;
+  };
+}
+
+interface Field {
+  val: string;
+  isValid: boolean;
+}
 
 const { addUser } = useUsers();
+const router = useRouter();
 
-const name = ref({
+const name = ref<Field>({
   val: "",
   isValid: true,
 });
 
-const userName = ref({
+const userName = ref<Field>({
   val: "",
   isValid: true,
 });
 
-const email = ref({
+const email = ref<Field>({
   val: "",
   isValid: true,
 });
 
-const city = ref({
+const city = ref<Field>({
   val: "",
   isValid: true,
 });
 
-const phone = ref({
+const phone = ref<Field>({
   val: "",
   isValid: true,
 });
 
-const company = ref({
+const company = ref<Field>({
   val: "",
   isValid: true,
 });
@@ -128,11 +148,6 @@ function resetInput() {
   company.value.val = "";
   phone.value.val = "";
 }
-
-function clearValidity(input) {
-  input.isValid = true;
-}
-
 function validateForm() {
   isFormValid.value = true;
 
@@ -174,7 +189,7 @@ function handleSubmit() {
     return;
   }
 
-  const newUser = {
+  const newUser: User = {
     id: Math.random(),
     name: name.value.val,
     username: userName.value.val,
