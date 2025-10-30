@@ -22,15 +22,14 @@
   </ul>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { Icon } from "@iconify/vue";
+
+interface Props {
+  mode?: string;
+}
 //eslint-disable-next-line
-const props = defineProps({
-  mode: {
-    type: String,
-    required: false,
-  },
-});
+const props = defineProps<Props>();
 </script>
 
 <style scoped>
