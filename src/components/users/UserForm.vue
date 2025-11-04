@@ -5,13 +5,13 @@
         <div>
           <label for="name">Name</label>
           <input
-            :class="{ valid: !name.isValid }"
+            :class="{ valid: !isFormValid && !formValues.name.trim() }"
             type="text"
             id="name"
-            v-model.trim="name.val"
+            v-model.trim="formValues.name"
             @blur="clearValidity(name)"
           />
-          <p v-if="!name.isValid">Enter a valid name</p>
+          <p v-if="!isFormValid && !formValues.name.trim()">Enter a valid name</p>
         </div>
 
         <div>
@@ -19,11 +19,11 @@
           <input
             type="text"
             id="username"
-            :class="{ valid: !userName.isValid }"
-            v-model.trim="userName.val"
+            :class="{ valid: !isFormValid && !formValues.userName.trim() }"
+            v-model.trim="formValues.userName"
             @blur="clearValidity(userName)"
           />
-          <p v-if="!userName.isValid">Enter a valid username</p>
+          <p v-if="!isFormValid && !formValues.userName.trim()">Enter a valid username</p>
         </div>
 
         <div>
@@ -31,11 +31,11 @@
           <input
             type="email"
             id="email"
-            :class="{ valid: !email.isValid }"
-            v-model.trim="email.val"
+            :class="{ valid: !isFormValid && !formValues.email.trim() }"
+            v-model.trim="formValues.email"
             @blur="clearValidity(email)"
           />
-          <p v-if="!email.isValid">Enter a valid email</p>
+          <p v-if="!isFormValid && !formValues.email.trim()">Enter a valid email</p>
         </div>
 
         <div>
@@ -43,11 +43,11 @@
           <input
             type="text"
             id="city"
-            :class="{ valid: !city.isValid }"
-            v-model.trim="city.val"
+            :class="{ valid: !isFormValid && !formValues.city.trim() }"
+            v-model.trim="formValues.city"
             @blur="clearValidity(city)"
           />
-          <p v-if="!city.isValid">Enter a valid city</p>
+          <p v-if="!isFormValid && !formValues.city.trim()">Enter a valid city</p>
         </div>
 
         <div>
@@ -55,11 +55,11 @@
           <input
             type="phone"
             id="phone"
-            :class="{ valid: !phone.isValid }"
-            v-model.trim="phone.val"
+            :class="{ valid: !isFormValid && !formValues.phone.trim() }"
+            v-model.trim="formValues.phone"
             @blur="clearValidity(phone)"
           />
-          <p v-if="!phone.isValid">Enter a valid phone</p>
+          <p v-if="!isFormValid && !formValues.phone.trim()">Enter a valid phone</p>
         </div>
 
         <div>
@@ -67,11 +67,11 @@
           <input
             type="company"
             id="company"
-            :class="{ valid: !company.isValid }"
-            v-model.trim="company.val"
+            :class="{ valid: !isFormValid && !formValues.company.trim() }"
+            v-model.trim="formValues.company"
             @blur="clearValidity(company)"
           />
-          <p v-if="!company.isValid">Enter a valid company</p>
+          <p v-if="!isFormValid && !formValues.company.trim()">Enter a valid company</p>
         </div>
 
         <div>
@@ -85,91 +85,36 @@
 <script setup>
 import { useUsers } from "@/hooks/useUsers";
 import router from "@/router";
-import { ref } from "vue";
+import { reactive, ref } from "vue";
 
 const { addUser } = useUsers();
 
-const name = ref({
-  val: "",
-  isValid: true,
-});
-
-const userName = ref({
-  val: "",
-  isValid: true,
-});
-
-const email = ref({
-  val: "",
-  isValid: true,
-});
-
-const city = ref({
-  val: "",
-  isValid: true,
-});
-
-const phone = ref({
-  val: "",
-  isValid: true,
-});
-
-const company = ref({
-  val: "",
-  isValid: true,
+const formValues = reactive({
+  name: "",
+  userName: "",
+  email: "",
+  city: "",
+  company: "",
+  phone: "",
 });
 
 const isFormValid = ref(true);
 
-function resetInput() {
-  name.value.val = "";
-  userName.value.val = "";
-  email.value.val = "";
-  city.value.val = "";
-  company.value.val = "";
-  phone.value.val = "";
+function resetInputs() {
+  formValues.name = "";
+  formValues.userName = "";
+  formValues.email = "";
+  formValues.city = "";
+  formValues.company = "";
+  formValues.phone = "";
 }
 
 function clearValidity(input) {
   input.isValid = true;
 }
 
-function validateForm() {
-  isFormValid.value = true;
-
-  if (name.value.val === "") {
-    name.value.isValid = false;
-    isFormValid.value = false;
-  }
-
-  if (userName.value.val === "") {
-    userName.value.isValid = false;
-    isFormValid.value = false;
-  }
-
-  if (email.value.val === "") {
-    email.value.isValid = false;
-    isFormValid.value = false;
-  }
-
-  if (phone.value.val === "") {
-    phone.value.isValid = false;
-    isFormValid.value = false;
-  }
-
-  if (city.value.val === "") {
-    city.value.isValid = false;
-    isFormValid.value = false;
-  }
-
-  if (company.value.val === "") {
-    company.value.isValid = false;
-    isFormValid.value = false;
-  }
-}
-
 function handleSubmit() {
-  validateForm();
+  isFormValid.value = Object.values(formValues).every((value) => value.trim() !== "");
 
   if (!isFormValid.value) {
     return;
@@ -177,21 +122,21 @@ function handleSubmit() {
 
   const newUser = {
     id: Math.random(),
-    name: name.value.val,
-    username: userName.value.val,
-    email: email.value.val,
+    name: formValues.name,
+    username: formValues.userName,
+    email: formValues.email,
     address: {
-      street: city.value.val,
+      street: formValues.city,
     },
-    phone: phone.value.val,
+    phone: formValues.phone,
     company: {
-      name: company.value.val,
+      name: formValues.company,
     },
   };
 
   addUser(newUser);
 
-  resetInput();
+  resetInputs();
 
   router.replace("/users");
 }
@@ -207,12 +152,14 @@ function handleSubmit() {
 .base {
   width: 100%;
 }
+
 form div {
   display: grid;
   grid-template-columns: 0.6fr 1fr 0.8fr;
   align-items: center;
   padding: 12px 24px;
 }
+
 input {
   outline: none;
   padding: 6px 8px;
@@ -222,6 +169,7 @@ input {
 form div p {
   margin-left: 24px;
 }
+
 .submit {
   grid-column: 3/3;
   margin-top: 12px;

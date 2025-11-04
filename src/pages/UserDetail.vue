@@ -48,9 +48,6 @@ import { useUsers } from "@/hooks/useUsers";
 
 const { users, isLoading } = useUsers();
 
-console.log(isLoading.value);
-console.log(users.value);
-
 const props = defineProps({
   id: {
     type: String,
@@ -73,7 +70,6 @@ img {
   display: flex;
   align-items: center;
   border-bottom: 1px solid #eee;
-  /* padding: 12px; */
 }
 
 .name {

@@ -35,7 +35,6 @@ import UserRow from "./UserRow.vue";
 import { useUsers } from "@/hooks/useUsers";
 
 const { users, isLoading } = useUsers();
-console.log(users.value);
 </script>
 
 <style scoped>
@@ -47,25 +46,21 @@ console.log(users.value);
   display: flex;
   flex-direction: column;
 }
+
 .table {
   display: grid;
   grid-template-columns: 0.2fr 1fr 1.2fr 1.2fr 0.9fr;
   padding: 12px;
   max-width: 1100px;
   margin-right: 2.5rem;
-
   align-items: center;
   column-gap: 2rem;
-
   background-color: antiquewhite;
 }
+
 .btn {
-  /* position: absolute;
-  top: -60px;
-  right: 120px; */
   align-self: end;
   margin-bottom: 24px;
-  /* position: fixed; */
 }
 
 .table div {
@@ -100,6 +95,7 @@ console.log(users.value);
   .email {
     display: none;
   }
+
   .table {
     grid-template-columns: 0.3fr 1fr 0.9fr;
   }
@@ -115,6 +111,7 @@ console.log(users.value);
     padding-left: 48px;
     padding-right: 48px;
   }
+
   .table {
     font-size: 12px;
     column-gap: 1rem;

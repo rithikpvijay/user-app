@@ -1,5 +1,5 @@
 import axios from "axios";
-import { onMounted, ref } from "vue";
+import { ref } from "vue";
 
 const users = ref(null);
 const isLoading = ref(false);
@@ -22,16 +22,14 @@ export function useUsers() {
       isLoading.value = false;
     }
   }
-  onMounted(getUser);
+  getUser();
 
   function addUser(newUser) {
     users.value.unshift(newUser);
   }
 
   function deleteUser(id) {
-    console.log(id);
     users.value = users.value.filter((user) => user.id !== id);
-    console.log(users.value);
   }
 
   return { users, isLoading, error, addUser, deleteUser };
