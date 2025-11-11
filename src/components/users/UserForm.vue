@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <base-card class="base">
-      <form @submit.prevent="handleSubmit">
-        <div>
+      <form @submit.prevent="handleSubmit" class="user-form">
+        <div class="form-group">
           <label for="name">Name</label>
           <input
             :class="{ valid: !isFormValid && !formValues.name.trim() }"
@@ -11,10 +11,12 @@
             v-model.trim="formValues.name"
             @blur="clearValidity(name)"
           />
-          <p v-if="!isFormValid && !formValues.name.trim()">Enter a valid name</p>
+          <p v-if="!isFormValid && !formValues.name.trim()" class="invalid-message">
+            Enter a valid name
+          </p>
         </div>
 
-        <div>
+        <div class="form-group">
           <label for="username">Username</label>
           <input
             type="text"
@@ -23,10 +25,12 @@
             v-model.trim="formValues.userName"
             @blur="clearValidity(userName)"
           />
-          <p v-if="!isFormValid && !formValues.userName.trim()">Enter a valid username</p>
+          <p v-if="!isFormValid && !formValues.userName.trim()" class="invalid-message">
+            Enter a valid username
+          </p>
         </div>
 
-        <div>
+        <div class="form-group">
           <label for="email">Email</label>
           <input
             type="email"
@@ -35,10 +39,12 @@
             v-model.trim="formValues.email"
             @blur="clearValidity(email)"
           />
-          <p v-if="!isFormValid && !formValues.email.trim()">Enter a valid email</p>
+          <p v-if="!isFormValid && !formValues.email.trim()" class="invalid-message">
+            Enter a valid email
+          </p>
         </div>
 
-        <div>
+        <div class="form-group">
           <label for="city">City</label>
           <input
             type="text"
@@ -47,10 +53,12 @@
             v-model.trim="formValues.city"
             @blur="clearValidity(city)"
           />
-          <p v-if="!isFormValid && !formValues.city.trim()">Enter a valid city</p>
+          <p v-if="!isFormValid && !formValues.city.trim()" class="invalid-message">
+            Enter a valid city
+          </p>
         </div>
 
-        <div>
+        <div class="form-group">
           <label for="phone">Phone</label>
           <input
             type="tel"
@@ -59,10 +67,12 @@
             v-model.trim="formValues.phone"
             @blur="clearValidity(phone)"
           />
-          <p v-if="!isFormValid && !formValues.phone.trim()">Enter a valid phone</p>
+          <p v-if="!isFormValid && !formValues.phone.trim()" class="invalid-message">
+            Enter a valid phone
+          </p>
         </div>
 
-        <div>
+        <div class="form-group">
           <label for="company">Company</label>
           <input
             type="company"
@@ -71,9 +81,11 @@
             v-model.trim="formValues.company"
             @blur="clearValidity(company)"
           />
-          <p v-if="!isFormValid && !formValues.company.trim()">Enter a valid company</p>
+          <p v-if="!isFormValid && !formValues.company.trim()" class="invalid-message">
+            Enter a valid company
+          </p>
         </div>
-        <span>
+        <span class="btn-container">
           <base-button class="blank submit">Submit</base-button>
         </span>
       </form>
@@ -152,25 +164,25 @@ function handleSubmit() {
   width: 100%;
 }
 
-form div {
+.form-group {
   display: grid;
   grid-template-columns: 0.6fr 1fr 0.8fr;
   align-items: center;
   padding: 12px 24px;
 }
 
-input {
+.form-group input {
   outline: none;
   padding: 6px 8px;
   border: 1px solid #999;
 }
 
-form div p {
+.invalid-message {
   margin-left: 24px;
   color: #555;
 }
 
-span {
+.btn-container {
   display: grid;
   grid-template-columns: 3fr 1fr;
 }
@@ -191,21 +203,22 @@ span {
 }
 
 @media (max-width: 600px) {
-  form div {
+  .user-form .form-group {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
   }
-  form div p {
+
+  .invalid-message {
     grid-column: 2/2;
     grid-row: 1/1;
     margin-left: 0;
   }
 
-  input {
+  .form-group input {
     grid-column: 2/2;
     grid-row: 2/2;
   }
-  label {
+  .form-group label {
     grid-row: 2/2;
   }
 }
@@ -214,21 +227,21 @@ span {
     padding: 40px 48px;
   }
 
-  form div {
+  .user-form .form-group {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr 1fr;
     padding-top: 0;
     padding-bottom: 12px;
   }
 
-  label {
+  .form-group label {
     grid-row: 1/1;
   }
-  input {
+  .form-group input {
     grid-column: 1/1;
   }
 
-  form div p {
+  .invalid-message {
     grid-row: 3/3;
     grid-column: 1/1;
   }
