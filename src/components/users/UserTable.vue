@@ -52,7 +52,8 @@ const { users, isLoading } = useUsers();
   grid-template-columns: 0.2fr 1fr 1.2fr 1.2fr 0.9fr;
   padding: 12px;
   max-width: 1100px;
-  margin-right: 2.5rem;
+  margin-right: 2.1rem;
+
   align-items: center;
   column-gap: 2rem;
   background-color: antiquewhite;
@@ -116,5 +117,9 @@ const { users, isLoading } = useUsers();
     font-size: 12px;
     column-gap: 1rem;
   }
+}
+
+.btn {
+  font-size: 14px;
 }
 </style>
