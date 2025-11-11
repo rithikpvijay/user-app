@@ -1,5 +1,7 @@
 <template>
   <div class="container">
+    <base-button link to="/add" class="blank btn">Add User</base-button>
+
     <div class="table">
       <div>S.No</div>
       <div>Name</div>
@@ -15,8 +17,9 @@
   </div>
 
   <div v-if="!isLoading">
-    <div v-for="user in userData" :key="user.id">
+    <div v-for="(user, index) in users" :key="user.id">
       <user-row
+        :num="index"
         :id="user.id"
         :name="user.name"
         :email="user.email"
@@ -28,43 +31,36 @@
 </template>
 
 <script setup>
-import axios from "axios";
-import { onMounted, ref } from "vue";
 import UserRow from "./UserRow.vue";
+import { useUsers } from "@/hooks/useUsers";
 
-const userData = ref([]);
-const error = ref(null);
-const isLoading = ref(false);
-
-onMounted(async () => {
-  try {
-    error.value = null;
-    isLoading.value = true;
-    const response = await axios.get("https://jsonplaceholder.typicode.com/users");
-    userData.value = response.data;
-  } catch (err) {
-    error.value = err;
-  } finally {
-    isLoading.value = false;
-  }
-});
+const { users, isLoading } = useUsers();
 </script>
 
 <style scoped>
 .container {
   max-width: 1500px;
   margin: 0 auto;
-  padding: 24px 150px 0 150px;
+  padding: 0 150px 0 150px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
 }
+
 .table {
   display: grid;
   grid-template-columns: 0.2fr 1fr 1.2fr 1.2fr 0.9fr;
   padding: 12px;
-
+  max-width: 1100px;
+  margin-right: 2.5rem;
   align-items: center;
   column-gap: 2rem;
-
   background-color: antiquewhite;
+}
+
+.btn {
+  align-self: end;
+  margin-bottom: 24px;
 }
 
 .table div {
@@ -99,6 +95,7 @@ onMounted(async () => {
   .email {
     display: none;
   }
+
   .table {
     grid-template-columns: 0.3fr 1fr 0.9fr;
   }
@@ -114,6 +111,7 @@ onMounted(async () => {
     padding-left: 48px;
     padding-right: 48px;
   }
+
   .table {
     font-size: 12px;
     column-gap: 1rem;
